@@ -13,12 +13,26 @@ export const createPdfWithPuppeteer = async (
           <style>
             body {
               font-family: Arial, sans-serif;
-              margin: 20px;
-              line-height: 1.6;
+              margin: 0;
+              padding: 20px;
+              background-color: #f9f9f9;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .content-wrapper {
+              background-color: white;
+              border: 2px solid #ddd;
+              border-radius: 15px;
+              padding: 30px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              width: 100%;
+              max-width: 800px;
             }
             img.header {
               width: 100%;
               margin-bottom: 20px;
+              border-radius: 10px; /* Rounded corners for the image */
             }
             h1, h2, h3, h4, h5, h6 {
               margin: 10px 0;
@@ -55,6 +69,7 @@ export const createPdfWithPuppeteer = async (
           </style>
         </head>
         <body>
+          <div class="content-wrapper">
     `
 
   if (headerImageBuffer) {
@@ -63,7 +78,7 @@ export const createPdfWithPuppeteer = async (
     fullHtmlContent += `<img src="${dataUrl}" class="header" />`
   }
 
-  fullHtmlContent += `${htmlContent}</body></html>`
+  fullHtmlContent += `${htmlContent}</div></body></html>`
 
   await page.setContent(fullHtmlContent, { waitUntil: "domcontentloaded" })
   const pdfBuffer = await page.pdf({ format: "A4" })
