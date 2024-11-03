@@ -1,5 +1,5 @@
 {
-  "name": "md-to-pdf-endpoint",
+  "name": "md-to-pdf-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
